@@ -1,0 +1,26 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script>
+getTransport = function( )
+{
+	var xmlHttp;
+	if (window.ActiveXObject)
+	{
+		xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+	else if (window.XMLHttpRequest)
+	{
+		xmlHttp = new XMLHttpRequest();
+	}
+	return xmlHttp;
+};
+document.domain="evil.com"; // 这个很关键，可以注释掉看看
+alert("proxy.htm: "+document.domain);
+</script>
+</head>
+<body>
+i am proxy.htm
+</body>
+</html>
+

